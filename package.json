@@ -1,6 +1,6 @@
 {
   "name": "svelte-timeago",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
@@ -9,9 +9,10 @@
   "devDependencies": {
     "@sveltejs/kit": "next",
     "svelte": "^3.42.6",
+    "svelte-preprocess": "^4.9.8",
     "svelte2tsx": "^0.4.7",
     "typescript": "^4.4.4"
   },
   "type": "module",
-  "svelte":"TimeAgo.svelte"
+  "svelte": "TimeAgo.svelte"
 }
