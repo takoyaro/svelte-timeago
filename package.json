@@ -1,5 +1,5 @@
 {
-  "name": "timeago",
+  "name": "svelte-timeago",
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
