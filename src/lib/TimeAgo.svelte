@@ -58,4 +58,4 @@
 		years?:string
 	}
 </script>
-{parseInt(obj[unit])}{units[unit] ?? __units[unit]} {#if withSuffix}{suffix}{/if}
+{parseInt(obj[unit])}{units[unit] ?? __units[unit]}{#if withSuffix}{suffix}{/if}
