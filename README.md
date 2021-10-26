@@ -27,6 +27,10 @@ Should the displayed time update every 1 second?
 **Default: `true`**
 Should the word _**ago**_ be displayed after the time?
 
+### `asPrefix`
+**Default: `true`**
+Should the suffix be a prefix instead? i.e. `Il y à n{unit}`
+
 ### `suffix`
 **Default: `ago`**
 The suffix used when `withSuffix` is set to true.
