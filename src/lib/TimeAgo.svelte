@@ -18,7 +18,24 @@
 	 * @description Should the word ago be displayed after the time?
 	 * @default true
 	 */
-	export let suffix:boolean = true;
+	export let withSuffix:boolean = true;
+
+	/**
+	 * @description The suffix used when `withSuffix` is set to true.
+	 * @default 'ago'
+	 */
+	export let suffix:string = ' ago';
+
+	/**
+	 * @description The units to be displayed. Can also be used to set your own locale. i.e. 秒、分、時間 etc.
+	 * @default {seconds:'s',minutes:'m',hours:'h',days:'d',months:'mo',years:'y'}
+	 */
+	export let units:IUnits = {seconds:'s',minutes:'m',hours:'h',days:'d',months:'mo',years:'y'};
+
+	/**
+	 * @description This is just a fallback for properties not passed in the `units` prop.
+	 */
+	const __units = {seconds:'s',minutes:'m',hours:'h',days:'d',months:'mo',years:'y'};
 
 	let now = new Date().getTime();
 	$: asDate = (typeof date == 'number') ? (date.toString().length==10) ? new Date(date*1000).getTime() : new Date(date).getTime() : new Date(date).getTime();
@@ -28,8 +45,17 @@
 	$: hours = minutes/60;
 	$: days = hours/24;
 	$: months = days/30;
-	$: unit = (seconds<60) ? 's' : (minutes<60) ? 'm' : (hours<24) ? 'h' : (days<31) ? 'd' : 'mo';
-	$: obj = {s:seconds,m:minutes,h:hours,d:days,mo:months};
+	$: years = months/12;
+	$: unit = (seconds<60) ? 'seconds' : (minutes<60) ? 'minutes' : (hours<24) ? 'hours' : (days<31) ? 'days' : (months<12) ? 'months' : 'years';
+	$: obj = {seconds:seconds,minutes:minutes,hours:hours,days:days,months:months,years:years};
 	
+	interface IUnits {
+		seconds?:string,
+		minutes?:string,
+		hours?:string,
+		days?:string,
+		months?:string,
+		years?:string
+	}
 </script>
-{parseInt(obj[unit])}{unit} {#if suffix}ago{/if}
+{parseInt(obj[unit])}{units[unit] ?? __units[unit]} {#if withSuffix}{suffix}{/if}
