@@ -27,6 +27,11 @@
 	export let suffix:string = ' ago';
 
 	/**
+	 * @description Should the suffix be a prefix? Useful for some languages like French. i.e. 'il y à {n}{unit}'
+	 */
+	export let asPrefix:boolean = false;
+
+	/**
 	 * @description The units to be displayed. Can also be used to set your own locale. i.e. 秒、分、時間 etc.
 	 * @default {seconds:'s',minutes:'m',hours:'h',days:'d',months:'mo',years:'y'}
 	 */
@@ -58,4 +63,4 @@
 		years?:string
 	}
 </script>
-{parseInt(obj[unit])}{units[unit] ?? __units[unit]}{#if withSuffix}{suffix}{/if}
+{#if withSuffix && asPrefix}{suffix}{/if}{parseInt(obj[unit])}{units[unit] ?? __units[unit]}{#if withSuffix && !asPrefix}{suffix}{/if}
